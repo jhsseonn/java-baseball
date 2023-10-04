@@ -31,6 +31,20 @@ public class BaseballService {
         return strike;
     }
 
+    public int countStrike(String randNumStr, String inputNumber, int ball){
+        for (int i=0; i<3; i++){
+            int index = 0;
+            String rn = Character.toString(randNumStr.charAt(i));
+            if (inputNumber.contains(rn)){
+                index = inputNumber.indexOf(rn);
+            } else continue;
+            if (i!=index){
+                ball+=1;
+            }
+        }
+        return ball;
+    }
+
     public int getBall(String randNumStr, String inputNumber, int ball) {
         for (int i=0; i<3; i++){
             int index = 0;
