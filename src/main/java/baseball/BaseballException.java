@@ -9,7 +9,7 @@ public class BaseballException {
     }
 
     public void isValidRestart(String startOrEnd){
-        if (!startOrEnd.equals("1") && !startOrEnd.equals("0")) {
+        if (!startOrEnd.equals("1") && !startOrEnd.equals("2")) {
             throw new IllegalArgumentException();
         }
     }

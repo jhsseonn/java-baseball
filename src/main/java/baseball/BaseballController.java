@@ -22,7 +22,10 @@ public class BaseballController {
         }
 
         if (strike==3){
-            baseballService.restartGame();
+            int restartOrNot = baseballService.restartGame();
+            if (restartOrNot==1){
+                startBaseball();
+            }
         }
     }
 }
