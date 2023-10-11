@@ -1,5 +1,6 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Scanner;
@@ -7,7 +8,6 @@ import java.util.Scanner;
 public class BaseballService {
 
     BaseballOutput baseballOutput = new BaseballOutput();
-    Scanner sc = new Scanner(System.in);
 
     public String getRandNum(){
         String randNumStr = "";
@@ -64,7 +64,7 @@ public class BaseballService {
         int ball =0;
 
         baseballOutput.printInputNum();
-        String inputNumber = sc.next();
+        String inputNumber = Console.readLine();
 
         if (inputNumber.length()!=3){
             throw new IllegalArgumentException();

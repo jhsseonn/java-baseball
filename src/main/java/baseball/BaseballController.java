@@ -1,5 +1,6 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Scanner;
@@ -8,7 +9,6 @@ public class BaseballController {
 
     BaseballOutput baseballOutput = new BaseballOutput();
     BaseballService baseballService = new BaseballService();
-    Scanner sc = new Scanner(System.in);
 
     public void startBaseball(){
 
@@ -22,7 +22,7 @@ public class BaseballController {
 
         if (strike==3){
             baseballOutput.printGameOver();
-            String startOrEnd = sc.next();
+            String startOrEnd = Console.readLine();
 //            System.out.println(startOrEnd);
             if (startOrEnd.equals("1")){
                 startBaseball();
