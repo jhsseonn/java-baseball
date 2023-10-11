@@ -20,59 +20,45 @@ public class BaseballService {
         return randNumStr;
     }
 
-    public int getStrike(String randNumStr, String inputNumber, int strike){
+    public int countStrikeOrBall(StrikeOrBall strikeOrBall, String randNumStr, String inputNumber){
+        int count = 0;
         for (int i=0; i<3; i++){
             int index = 0;
             String rn = Character.toString(randNumStr.charAt(i));
             if (inputNumber.contains(rn)){
                 index = inputNumber.indexOf(rn);
             } else continue;
-            if (i==index){
-                strike+=1;
-            }
+            count += addStrikeOrBall(strikeOrBall, i, index);
         }
-        return strike;
+        return count;
     }
 
-    public int countStrike(String randNumStr, String inputNumber, int ball){
-        for (int i=0; i<3; i++){
-            int index = 0;
-            String rn = Character.toString(randNumStr.charAt(i));
-            if (inputNumber.contains(rn)){
-                index = inputNumber.indexOf(rn);
-            } else continue;
-            if (i!=index){
-                ball+=1;
-            }
+    public int addStrikeOrBall(StrikeOrBall strikeOrBall, int i, int index){
+        if (strikeOrBall==StrikeOrBall.STRIKE){
+            if (i==index) return 1;
+        } else {
+            if (i!=index) return 1;
         }
-        return ball;
+        return 0;
     }
 
-    public int getBall(String randNumStr, String inputNumber, int ball) {
-        for (int i=0; i<3; i++){
-            int index = 0;
-            String rn = Character.toString(randNumStr.charAt(i));
-            if (inputNumber.contains(rn)){
-                index = inputNumber.indexOf(rn);
-            } else continue;
-            if (i!=index){
-                ball+=1;
-            }
-        }
-        return ball;
+    public int getStrike(String randNumStr, String inputNumber){
+        return countStrikeOrBall(StrikeOrBall.STRIKE, randNumStr, inputNumber);
+    }
+
+    public int getBall(String randNumStr, String inputNumber) {
+        return countStrikeOrBall(StrikeOrBall.BALL, randNumStr, inputNumber);
     }
 
     public int startGame(String randNumStr) {
-        int strike = 0;
-        int ball =0;
 
         baseballOutput.printInputNum();
         String inputNumber = Console.readLine();
 
         baseballException.isIllegalArgument(inputNumber);
 
-        strike = getStrike(randNumStr, inputNumber, strike);
-        ball = getBall(randNumStr, inputNumber, ball);
+        int strike = getStrike(randNumStr, inputNumber);
+        int ball = getBall(randNumStr, inputNumber);
 
         baseballOutput.printResult(strike, ball);
 
