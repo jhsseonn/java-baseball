@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class BaseballService {
 
     BaseballOutput baseballOutput = new BaseballOutput();
+    BaseballController baseballController = new BaseballController();
+
+    BaseballException baseballException = new BaseballException();
 
     public String getRandNum(){
         String randNumStr = "";
@@ -66,9 +69,7 @@ public class BaseballService {
         baseballOutput.printInputNum();
         String inputNumber = Console.readLine();
 
-        if (inputNumber.length()!=3){
-            throw new IllegalArgumentException();
-        }
+        baseballException.isIllegalArgument(inputNumber);
 
         strike = getStrike(randNumStr, inputNumber, strike);
         ball = getBall(randNumStr, inputNumber, ball);
@@ -76,5 +77,16 @@ public class BaseballService {
         baseballOutput.printResult(strike, ball);
 
         return strike;
+    }
+
+    public void restartGame(){
+        baseballOutput.printGameOver();
+        String startOrEnd = Console.readLine();
+//            System.out.println(startOrEnd);
+        if (startOrEnd.equals("1")){
+            baseballController.startBaseball();
+        } else {
+            baseballOutput.printGameEnd();
+        }
     }
 }

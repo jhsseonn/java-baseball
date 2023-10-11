@@ -15,20 +15,14 @@ public class BaseballController {
         int strike = 0;
 
         baseballOutput.printGameStart();
+        String randNumStr = baseballService.getRandNum();
 
         while (strike<3) {
-            strike = baseballService.startGame(baseballService.getRandNum());
+            strike = baseballService.startGame(randNumStr);
         }
 
         if (strike==3){
-            baseballOutput.printGameOver();
-            String startOrEnd = Console.readLine();
-//            System.out.println(startOrEnd);
-            if (startOrEnd.equals("1")){
-                startBaseball();
-            } else {
-                baseballOutput.printGameEnd();
-            }
+            baseballService.restartGame();
         }
     }
 }
